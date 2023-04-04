@@ -5,7 +5,6 @@ The program calculates the average value of views per user,
 i.e. the ratio of the sum of all views to the number of unique users.
 
 '''
-
 import re
 
 stream = [
@@ -22,12 +21,8 @@ stream = [
     'user4,2021-05-03;9',
     'user4,2022-05-11;11'
 ]
-
-user_views = {}
-for log in stream:
-    user, number_views = re.split(r'[,;]', log)[0], int(re.split(r'[,;]', log)[2])
-    user_views.setdefault(user, 0)
-    user_views[user] += number_views
+total_views = sum([int(re.split(r'[,;]', log)[2]) for log in stream])
+unique_users_count = len(set([re.split(r'[,;]', log)[0] for log in stream]))
 
 print(f'Среднее количество просмотров на уникального пользователя: '
-      f'{(sum(user_views.values()) / len(user_views.keys())):.2f}')
+      f'{total_views / unique_users_count:.2f}')
