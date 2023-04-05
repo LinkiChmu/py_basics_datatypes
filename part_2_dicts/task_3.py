@@ -12,7 +12,7 @@ results = {
     'adwords': {'revenue': 35, 'cost': 34},
     'twitter': {'revenue': 11, 'cost': 24},
 }
-for source, metrics in results.items():
+for metrics in results.values():
     metrics['ROI'] = round((metrics.get('revenue') / metrics.get('cost') - 1) * 100, 2)
 
 print(results)
