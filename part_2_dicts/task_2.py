@@ -20,7 +20,6 @@ queries = [
 query_size = {}
 for query in queries:
     size = len(re.split(r"\W+", query))
-    query_size.setdefault(size, 0)
-    query_size[size] += 1
+    query_size[size] = query_size.setdefault(size, 0) + 1
 for size, count in sorted(query_size.items()):
     print(f'Поисковых запросов, содержащих {size} слов(а): {count / len(queries):.2%}')

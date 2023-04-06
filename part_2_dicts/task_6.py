@@ -36,8 +36,7 @@ quantity_by_product = {}
 for ingridient_list in cook_book.values():
     for ingridient in ingridient_list:
         key = f"{ingridient.get('ingridient_name').capitalize()} {ingridient.get('measure')}"
-        quantity_by_product.setdefault(key, 0)
-        quantity_by_product[key] += ingridient.get('quantity')
+        quantity_by_product[key] = quantity_by_product.setdefault(key, 0) + ingridient.get('quantity')
 
 portion = int(input('Введите количество порций: '))
 
