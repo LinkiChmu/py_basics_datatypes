@@ -32,15 +32,15 @@ cook_book = {
     ]
 }
 
+numbservings = int(input('Введите количество порций: '))
+
 quantity_by_product = {}
-for ingridient_list in cook_book.values():
-    for ingridient in ingridient_list:
-        key = (ingridient.get('ingridient_name').capitalize(), ingridient.get('measure'))
-        quantity_by_product[key] = quantity_by_product.setdefault(key, 0) + ingridient.get('quantity')
 
-portion = int(input('Введите количество порций: '))
+for ingredient in sum(cook_book.values(), []):
+    key = (ingredient.get('ingridient_name'), ingredient.get('measure'))
+    quantity_by_product[key] = quantity_by_product.setdefault(key, 0) + ingredient.get('quantity')
 
-for product, quantity_per_portion in quantity_by_product.items():
-    print(f"{product[0]}: "
-          f"{quantity_per_portion * portion}"
-          f" {product[1]}")
+for (ingredname, measure), quantity_per_portion in quantity_by_product.items():
+    print(f"{ingredname.capitalize()}: "
+          f"{quantity_per_portion * numbservings}"
+          f" {measure}")
